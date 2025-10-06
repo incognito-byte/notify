@@ -4,7 +4,6 @@ import { spawn } from "child_process";
 import chalk from "chalk";
 import { readConfig } from "../src/utils/readConfig";
 import { checkGh } from "../src/utils/checkGh";
-import { ensureDefaultRepo } from "../src/utils/ensureDefaultRepo";
 import { createIssue } from "../src/commands/createIssue";
 import { init } from "../src/commands/init";
 import { notifyFileExists } from "../src/utils/notifyFileExists";
@@ -48,7 +47,6 @@ async function main() {
     console.log(`\nCommand finished: ${colorCodedStatus}`);
 
     const config = await readConfig();
-    await ensureDefaultRepo(config);
 
     const summary = `Command: ${command}\nResult: ${status}\nTime: ${new Date().toLocaleString()}\nWorking Directory: ${workingDir}`;
 

@@ -4,13 +4,22 @@ import path from "path";
 import chalk from "chalk";
 import { notifyFileExists } from "../utils/notifyFileExists";
 import { getDefaultUsername } from "../utils/getDefaultUsername";
+import { ensureRepoExists } from "../utils/ensureRepoExists";
 
 export async function init() {
   const repo = await input({
     message:
-      "GitHub repo for notifications (write in format of owner/repo or leave blank to to use default notifier repository)",
+      "GitHub repo for notifications (write in format of owner/repo or leave blank to to use default notifications repository)",
     default: "",
   });
+
+  const username = getDefaultUsername();
+
+  const config = {
+    repo: repo || `${username}/notifications`,
+  };
+
+  await ensureRepoExists(config);
 
   const hasToken = process.env.GITHUB_TOKEN;
   let setupToken = false;
@@ -22,12 +31,6 @@ export async function init() {
       default: false,
     });
   }
-
-  const username = getDefaultUsername();
-
-  const config = {
-    repo: repo || `${username}/notifier`,
-  };
 
   const { workingDir } = await notifyFileExists(true, config);
 
