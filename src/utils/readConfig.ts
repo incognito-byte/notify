@@ -1,14 +1,16 @@
 import fs from "fs/promises";
 import path from "path";
+import { notifyFileExists } from "./notifyFileExists";
+import chalk from "chalk";
 
 export async function readConfig() {
-  // Use the original working directory if available, otherwise use current directory
-  const workingDir = process.env.ORIGINAL_CWD || process.cwd();
-  const file = path.resolve(workingDir, ".notify");
+  const { workingDir } = await notifyFileExists();
   try {
-    const data = await fs.readFile(file, "utf8");
+    const data = await fs.readFile(path.resolve(workingDir, ".notify"), "utf8");
     return JSON.parse(data);
   } catch (error) {
-    return { repo: "notifier" };
+    console.log(chalk.yellow("No .notify file found"));
+    console.log(chalk.yellow("Please run `notify init` to create one"));
+    process.exit(1);
   }
 }

@@ -1,0 +1,32 @@
+name: 💡 Q&A
+description: Ask a question and get answers from the community
+title: ""
+labels: ["q-and-a"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ask a question and get help from the community!
+
+  - type: textarea
+    attributes:
+      label: Question
+      description: What would you like to know?
+      placeholder: "Ask your question here..."
+      validations:
+        required: true
+
+  - type: dropdown
+    attributes:
+      label: Category
+      description: What category best fits your question?
+      options:
+        - Usage
+        - Installation
+        - Configuration
+        - Troubleshooting
+        - Best Practices
+        - Integration
+        - Other
+      validations:
+        required: true

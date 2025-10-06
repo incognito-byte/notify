@@ -1,0 +1,46 @@
+name: 💭 Ideas
+description: Share ideas for improving the project
+title: ""
+labels: ["ideas"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share your ideas for improving Notify CLI!
+
+  - type: textarea
+    attributes:
+      label: Idea
+      description: Describe your idea
+      placeholder: "Describe your idea here..."
+      validations:
+        required: true
+
+  - type: dropdown
+    attributes:
+      label: Category
+      description: What type of improvement is this?
+      options:
+        - New Feature
+        - Enhancement
+        - UI/UX Improvement
+        - Performance
+        - Documentation
+        - Developer Experience
+        - Other
+      validations:
+        required: true
+
+  - type: textarea
+    attributes:
+      label: Motivation
+      description: Why is this idea valuable?
+      placeholder: "Explain why this idea would be valuable to users..."
+      validations:
+        required: true
+
+  - type: textarea
+    attributes:
+      label: Implementation Notes
+      description: Any thoughts on how this could be implemented?
+      placeholder: "Share any thoughts on implementation, technical considerations, or examples..."

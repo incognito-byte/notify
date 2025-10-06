@@ -10,17 +10,17 @@
     "type": "git",
     "url": "git+https://github.com/incognito-byte/notify.git"
   },
-  "license": "ISC",
-  "author": "",
+  "license": "MIT",
+  "author": "incognito-byte",
   "type": "commonjs",
   "main": "dist/index.js",
   "bin": {
-    "notify": "./dist/bin/notify.js"
+    "notify": "./dist/notify-bundle.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "esbuild bin/notify.ts --bundle --platform=node --target=node18 --format=cjs --outfile=dist/notify-bundle.js --external:fsevents",
     "dev": "ts-node bin/notify.ts",
-    "start": "node bin/notify.js",
+    "start": "node dist/notify-bundle.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "clean": "rm -rf dist",
@@ -29,6 +29,7 @@
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^24.6.2",
+    "esbuild": "^0.25.10",
     "jest": "^30.2.0",
     "ts-jest": "^29.4.4",
     "ts-node": "^10.9.2",

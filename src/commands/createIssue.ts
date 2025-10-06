@@ -1,4 +1,5 @@
 import { execSync } from "child_process";
+import { getDefaultUsername } from "../utils/getDefaultUsername";
 import chalk from "chalk";
 
 export async function createIssue(
@@ -6,16 +7,12 @@ export async function createIssue(
   summary: string,
   status: string
 ) {
-  const title = `[Notify] ${status}`;
+  const title = `[Notification] ${status}`;
 
   try {
-    const username = execSync("gh api user --jq .login", {
-      encoding: "utf-8",
-    }).trim();
+    const username = getDefaultUsername();
+    const repo = config.repo;
 
-    const repo = config.repo || `${username}/notifier`;
-
-    // Use a specific token if available, otherwise use default gh auth
     const token = process.env.GITHUB_TOKEN;
     const ghCommand = token
       ? `GITHUB_TOKEN=${token} gh issue create --repo ${repo} --title "${title}" --body "${summary}" --assignee ${username}`

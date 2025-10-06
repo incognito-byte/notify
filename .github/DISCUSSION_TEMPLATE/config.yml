@@ -1,0 +1,13 @@
+categories:
+  - emoji: "💬"
+    title: "General"
+    description: "General discussion about the project"
+  - emoji: "💡"
+    title: "Q&A"
+    description: "Ask questions and get answers"
+  - emoji: "💭"
+    title: "Ideas"
+    description: "Share ideas for improving the project"
+  - emoji: "🎉"
+    title: "Show and Tell"
+    description: "Share how you're using Notify CLI"

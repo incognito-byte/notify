@@ -2,40 +2,34 @@ import { input, confirm } from "@inquirer/prompts";
 import fs from "fs/promises";
 import path from "path";
 import chalk from "chalk";
+import { notifyFileExists } from "../utils/notifyFileExists";
+import { getDefaultUsername } from "../utils/getDefaultUsername";
 
 export async function init() {
   const repo = await input({
     message:
-      "GitHub repo for notifications (owner/repo or leave blank for default)",
+      "GitHub repo for notifications (write in format of owner/repo or leave blank to to use default notifier repository)",
     default: "",
   });
 
-  const label = await input({
-    message: "Optional label to add to issues",
-    default: "",
-  });
-
-  // Check if GitHub token setup is needed
   const hasToken = process.env.GITHUB_TOKEN;
   let setupToken = false;
 
   if (!hasToken) {
     setupToken = await confirm({
       message:
-        "Set up GitHub token to avoid 'self-assigned' issues? (Recommended)",
-      default: true,
+        "Set up GitHub token to avoid 'self-assigned' issues and receive mobile notifications? (Recommended)",
+      default: false,
     });
   }
 
+  const username = getDefaultUsername();
+
   const config = {
-    repo: repo || "notifier",
-    label: label || undefined,
+    repo: repo || `${username}/notifier`,
   };
 
-  const workingDir = process.env.ORIGINAL_CWD || process.cwd();
-  const configFile = path.resolve(workingDir, ".notify");
-  await fs.writeFile(configFile, JSON.stringify(config, null, 2));
-  console.log(chalk.green("✅ .notify file created!"));
+  const { workingDir } = await notifyFileExists(true, config);
 
   if (setupToken) {
     await setupGitHubToken(workingDir);
@@ -45,7 +39,9 @@ export async function init() {
 async function setupGitHubToken(workingDir: string) {
   console.log(chalk.cyan("\n🔑 Setting up GitHub token..."));
   console.log(
-    chalk.yellow("This will help avoid 'self-assigned' issues in GitHub.")
+    chalk.yellow(
+      "This will help avoid 'self-assigned' issues and receive mobile notifications in GitHub."
+    )
   );
 
   const method = await input({
@@ -64,7 +60,7 @@ async function setupGitHubToken(workingDir: string) {
     case "3":
       console.log(
         chalk.yellow(
-          "⚠️  Skipping token setup. Issues may appear as 'self-assigned'."
+          "⚠️  Skipping token setup. You will not receive mobile notifications."
         )
       );
       break;
@@ -129,7 +125,6 @@ async function saveTokenToEnvFile(workingDir: string, token: string) {
 
   await fs.writeFile(envFile, envContent);
 
-  // Add .env to .gitignore if it exists
   const gitignorePath = path.resolve(workingDir, ".gitignore");
   try {
     const gitignoreContent = await fs.readFile(gitignorePath, "utf8");
@@ -137,7 +132,6 @@ async function saveTokenToEnvFile(workingDir: string, token: string) {
       await fs.appendFile(gitignorePath, "\n.env\n");
     }
   } catch {
-    // .gitignore doesn't exist, create it
     await fs.writeFile(gitignorePath, ".env\n");
   }
 }
