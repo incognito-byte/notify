@@ -44,7 +44,7 @@ notify "npm run build"
 # If build fails, creates an issue like:
 # [Notification] ❌ Failed (exit 1)
 # Command: go run main.go
-# Result: ❌ Failed (exit )
+# Result: ❌ Failed (exit 1)
 # Time: 10/5/2025, 6:52:49 PM
 # Working Directory: /path
 ```
