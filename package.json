@@ -24,7 +24,10 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "clean": "rm -rf dist",
-    "prebuild": "npm run clean"
+    "prebuild": "npm run clean",
+    "prepublishOnly": "npm run build && npm test",
+    "version": "npm run build && git add dist/",
+    "postversion": "git push && git push --tags"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
