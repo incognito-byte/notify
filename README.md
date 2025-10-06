@@ -20,7 +20,7 @@
 Globally via npm:
 
 ```bash
-npm install -g notify
+npm install -g notify-cli-tool
 ```
 
 ## Example
