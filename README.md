@@ -1,4 +1,4 @@
-# Notify CLI
+# Notify CLI Tool
 
 [![Tests](https://github.com/incognito-byte/notify/actions/workflows/test.yml/badge.svg)](https://github.com/incognito-byte/notify/actions/workflows/test.yml)
 
