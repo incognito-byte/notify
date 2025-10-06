@@ -1,4 +1,4 @@
-# Notify CLI Tool
+# Notify Tool
 
 [![Tests](https://github.com/incognito-byte/notify/actions/workflows/test.yml/badge.svg)](https://github.com/incognito-byte/notify/actions/workflows/test.yml)
 
@@ -20,7 +20,7 @@
 Globally via npm:
 
 ```bash
-npm install -g notify-cli-tool
+npm install -g notify-tool
 ```
 
 ## Example
