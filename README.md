@@ -1,6 +1,6 @@
 # Notify CLI
 
-[![Tests](https://github.com/incognito-byte/notify/workflows/Tests/badge.svg)](https://github.com/incognito-byte/notify/actions)
+[![Tests](https://github.com/incognito-byte/notify/actions/workflows/test.yml/badge.svg)](https://github.com/incognito-byte/notify/actions/workflows/test.yml)
 
 **Run any command and automatically create a GitHub issue when it finishes.**
 
