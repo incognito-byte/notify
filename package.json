@@ -1,5 +1,5 @@
 {
-  "name": "notify-cli-tool",
+  "name": "@incognito-byte/notify",
   "version": "1.0.0",
   "description": "A CLI tool for GitHub notifications and issue management",
   "homepage": "https://github.com/incognito-byte/notify#readme",
@@ -9,6 +9,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/incognito-byte/notify.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "license": "MIT",
   "author": "incognito-byte",
