@@ -1,0 +1,27 @@
+# Source files
+src/
+bin/
+
+# Tests
+*.test.ts
+*.test.js
+__tests__/
+
+# Config files
+jest.config.js
+tsconfig.json
+.eslintrc*
+.prettierrc*
+
+# GitHub files
+.github/
+
+# Development files
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+# Dependencies
+node_modules/
+package-lock.json
