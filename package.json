@@ -12,6 +12,18 @@
   },
   "license": "MIT",
   "author": "incognito-byte",
+  "keywords": [
+    "cli",
+    "notify",
+    "notifications",
+    "github",
+    "issues",
+    "automation",
+    "command-line",
+    "notification",
+    "workflow",
+    "dev-tools"
+  ],
   "type": "commonjs",
   "main": "dist/index.js",
   "bin": {
